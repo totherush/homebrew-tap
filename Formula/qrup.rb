@@ -19,7 +19,7 @@ class Qrup < Formula
     # Create launcher script
     (bin/"qrup").write <<~EOS
       #!/bin/bash
-      exec bun "#{prefix}/dist/server.js"
+      exec bun "#{prefix}/dist/server.js" "$@"
     EOS
 
     chmod 0755, bin/"qrup"
