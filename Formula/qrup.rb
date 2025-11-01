@@ -1,8 +1,8 @@
 class Qrup < Formula
   desc "Local QR-based encrypted messaging app"
   homepage "https://github.com/totherush/qrup"
-  url "https://github.com/totherush/qrup/archive/refs/tags/v0.1.3.tar.gz"
-  sha256 "a1efa24b219d5975a6d62fbaa792a3c2adfc345951526f6586c4985bba6b192a"
+  url "https://github.com/totherush/qrup/archive/refs/tags/v0.1.4.tar.gz"
+  sha256 "a0ac26d779270ea16fc88dd508e0d173def3351e760957f71007327fa2c0973a"
   license "MIT"
 
   depends_on "bun"
