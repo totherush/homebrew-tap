@@ -1,23 +1,34 @@
 class Qrup < Formula
   desc "Upload and download files over the local network via a QR code"
   homepage "https://github.com/totherush/qrup"
-  url "https://github.com/totherush/qrup/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "9062a0282529da17b7a7568a628a2b4a92577a8a76ff77d033a7f1e20118c954"
+  version "0.2.1"
   license "MIT"
 
-  depends_on "bun"
+  # Standalone binaries from the GitHub release; they embed the Bun runtime and the web app.
+  on_macos do
+    on_arm do
+      url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-darwin-arm64.tar.gz"
+      sha256 "c859495a6f276af92ebc7e7d21811accd39f6889ff045acfc221b71badbf8057"
+    end
+    on_intel do
+      url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-darwin-x64.tar.gz"
+      sha256 "8fe8a2edd9e42fd410bb5a0ef6ccbb9ae60780150ffc8a4bd7a5f1d0ea9f3f1d"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-linux-arm64.tar.gz"
+      sha256 "37abfec11a6e30afd54079e6b32d6b260de63ac57a6d3042062cdae30f137a61"
+    end
+    on_intel do
+      url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-linux-x64.tar.gz"
+      sha256 "bb8b0ba16da19018e1ece9fd4c639cc0784200656070ba4e01f8d41a1d8855a6"
+    end
+  end
 
   def install
-    system "bun", "install", "--frozen-lockfile"
-    system "bun", "run", "build"
-
-    # dist/server.js bundles all server dependencies; dist/client is the built web app.
-    libexec.install "dist"
-
-    (bin/"qrup").write <<~EOS
-      #!/bin/bash
-      exec "#{Formula["bun"].opt_bin}/bun" "#{libexec}/dist/server.js" "$@"
-    EOS
+    bin.install "qrup"
   end
 
   test do
