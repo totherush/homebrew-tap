@@ -1,6 +1,6 @@
 class Qrup < Formula
   desc "Upload and download files over the local network via a QR code"
-  homepage "https://github.com/totherush/qrup"
+  homepage "https://qrup.me"
   version "0.2.2"
   license "MIT"
 
