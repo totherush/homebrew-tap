@@ -32,11 +32,17 @@ class Qrup < Formula
   end
 
   test do
+    assert_match version.to_s, shell_output("#{bin}/qrup --version")
+
     port = free_port
-    pid = spawn bin/"qrup", "--port", port.to_s, "--upload", testpath/"uploads"
+    token = "brew-test-token"
+    pid = spawn({ "QRUP_TOKEN" => token }, bin/"qrup", "--port", port.to_s, "--upload", testpath/"uploads")
     begin
       sleep 2
-      assert_match '"files"', shell_output("curl -s http://127.0.0.1:#{port}/api/files")
+      url = "http://127.0.0.1:#{port}/api/files"
+      # Requests need the access token from the QR code URL.
+      assert_equal "401", shell_output("curl -s -o /dev/null -w '%{http_code}' #{url}")
+      assert_match '"files"', shell_output("curl -s -H 'x-qrup-token: #{token}' #{url}")
       assert_path_exists testpath/"uploads"
     ensure
       Process.kill("TERM", pid)
