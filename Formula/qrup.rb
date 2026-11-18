@@ -1,29 +1,29 @@
 class Qrup < Formula
   desc "Upload and download files over the local network via a QR code"
   homepage "https://github.com/totherush/qrup"
-  version "0.2.1"
+  version "0.2.2"
   license "MIT"
 
   # Standalone binaries from the GitHub release; they embed the Bun runtime and the web app.
   on_macos do
     on_arm do
       url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-darwin-arm64.tar.gz"
-      sha256 "c859495a6f276af92ebc7e7d21811accd39f6889ff045acfc221b71badbf8057"
+      sha256 "fd5a374125cbfa2dcd9775d8fd351e50e67da48f5ae20c6c2b315190e9c428e3"
     end
     on_intel do
       url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-darwin-x64.tar.gz"
-      sha256 "8fe8a2edd9e42fd410bb5a0ef6ccbb9ae60780150ffc8a4bd7a5f1d0ea9f3f1d"
+      sha256 "f5b28ddd0f6049a5ea05fdc54ebc9fc6f2cf983f4a448a008ec831c9061f55ec"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-linux-arm64.tar.gz"
-      sha256 "37abfec11a6e30afd54079e6b32d6b260de63ac57a6d3042062cdae30f137a61"
+      sha256 "030ec0a014c74601daa3e7c66dc47342837330aacb69735a272c750f07868780"
     end
     on_intel do
       url "https://github.com/totherush/qrup/releases/download/v#{version}/qrup-linux-x64.tar.gz"
-      sha256 "bb8b0ba16da19018e1ece9fd4c639cc0784200656070ba4e01f8d41a1d8855a6"
+      sha256 "eaeb249f640b23f2055ce3d41121fcd4b43509e71bb05208afa3bded871918a3"
     end
   end
 
